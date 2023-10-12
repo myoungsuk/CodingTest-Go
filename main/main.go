@@ -1,13 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
-	var s1 string
-	var a int
-	fmt.Scan(&s1, &a)
+	a := 98
+	b := 2
+	fmt.Print(solution(a, b))
+}
 
-	for i := 0; i < a; i++ {
-		fmt.Print(s1)
+func solution(num int, n int) int {
+
+	if num%n == 0 {
+		return 1
+	} else {
+		return 0
 	}
+
 }
