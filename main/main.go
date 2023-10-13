@@ -5,17 +5,25 @@ import (
 )
 
 func main() {
-	a := 98
-	b := 2
-	fmt.Print(solution(a, b))
+	n := 10
+	fmt.Print(solution(n))
 }
 
-func solution(num int, n int) int {
+func solution(n int) int {
+	answer := 0
 
-	if num%n == 0 {
-		return 1
+	if n%2 == 1 {
+		for i := 0; i <= n; i++ {
+			if i%2 == 1 {
+				answer += i
+			}
+		}
 	} else {
-		return 0
+		for i := 1; i <= n; i++ {
+			if i%2 == 0 {
+				answer += i * i
+			}
+		}
 	}
-
+	return answer
 }
