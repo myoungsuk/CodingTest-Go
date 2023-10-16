@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
@@ -10,18 +11,19 @@ func main() {
 }
 
 func solution(num_list []int) int {
+	var odd string
+	var even string
 
-	sq := 1
-	sum := 0
-
-	for _, num := range num_list {
-		sq *= num
-		sum += num
+	for i := 0; i < len(num_list); i++ {
+		if num_list[i]%2 == 0 {
+			odd += strconv.Itoa(num_list[i])
+		} else {
+			even += strconv.Itoa(num_list[i])
+		}
 	}
 
-	if sq < sum*sum {
-		return 1
-	}
+	oddInt, _ := strconv.Atoi(odd)
+	evenInt, _ := strconv.Atoi(even)
 
-	return 0
+	return oddInt + evenInt
 }
