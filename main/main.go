@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
 func main() {
@@ -10,20 +9,15 @@ func main() {
 	fmt.Print(solution(num_list))
 }
 
-func solution(num_list []int) int {
-	var odd string
-	var even string
+func solution(num_list []int) []int {
 
-	for i := 0; i < len(num_list); i++ {
-		if num_list[i]%2 == 0 {
-			odd += strconv.Itoa(num_list[i])
-		} else {
-			even += strconv.Itoa(num_list[i])
-		}
+	last := num_list[len(num_list)-1]
+	front := num_list[len(num_list)-2]
+
+	if last > front {
+		return append(num_list, last-front)
+	} else {
+		return append(num_list, last*2)
 	}
 
-	oddInt, _ := strconv.Atoi(odd)
-	evenInt, _ := strconv.Atoi(even)
-
-	return oddInt + evenInt
 }
