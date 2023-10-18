@@ -5,19 +5,30 @@ import (
 )
 
 func main() {
-	num_list := []int{3, 4, 5, 2, 1}
-	fmt.Print(solution(num_list))
+	arr := []int{0, 1, 2, 4, 3}
+	queries := [][]int{{0, 4, 2}, {0, 3, 2}, {0, 2, 2}}
+
+	fmt.Print(solution(arr, queries))
 }
 
-func solution(num_list []int) []int {
+func solution(arr []int, queries [][]int) []int {
+	var result = []int{}
 
-	last := num_list[len(num_list)-1]
-	front := num_list[len(num_list)-2]
+	for _, query := range queries {
+		k := query[2]
+		min := 1000001
 
-	if last > front {
-		return append(num_list, last-front)
-	} else {
-		return append(num_list, last*2)
+		for _, n := range arr[query[0] : query[1]+1] {
+			if n > k && n < min {
+				min = n
+			}
+		}
+
+		if min == 1000001 {
+			result = append(result, -1)
+		} else {
+			result = append(result, min)
+		}
 	}
-
+	return result
 }

@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bf64dad-e431-45f7-ae75-d2a2d64a370b" name="변경" comment="10/16">
+    <list default="true" id="1bf64dad-e431-45f7-ae75-d2a2d64a370b" name="변경" comment="10/17">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main/main.go" afterDir="false" />
     </list>
@@ -106,7 +106,8 @@
     <MESSAGE value="10/13" />
     <MESSAGE value="10/14" />
     <MESSAGE value="10/16" />
-    <option name="LAST_COMMIT_MESSAGE" value="10/16" />
+    <MESSAGE value="10/17" />
+    <option name="LAST_COMMIT_MESSAGE" value="10/17" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
