@@ -1,0 +1,154 @@
+### 10/18
+
+JSON 인코딩
+
+Go 데이터를 JSON 포맷으로 변환하기 위해선 endoing/json 패키지의 Marshal()   gkatnfmf
+함수를 사용한다. 흔히 GO 구조체 혹은 map 데이타를 JSON 으로 인코딩하게 되는데,
+
+해당 GO 데이타 값을 json.marshal() 파라미터로 전달하면 JSON 으로 인코딩된 바이트 배열과
+에러객체를 리턴한다.
+
+바이트 배열을 다시 문자열로 변경할 필요가 있다면, string과 같이 변경할 수 있다.
+
+```go
+package main
+
+import (
+    "encoding/json"
+    "fmt"
+)
+
+//Member -
+type Member struct {
+    Name   string
+    Age    int
+    Active bool
+}
+
+func main() {
+    m := Member{"Alex", 10, true}
+    b, err := json.Marshal(m)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(string(b))
+}
+```
+
+JSON 디코딩
+인코딩된 데이털르 다시 디코딩 하기 위해선 Unmarshal() 함수를 사용하면 된다.
+
+    ```go
+    package main
+
+    import (
+        "encoding/json"
+        "fmt"
+    )
+
+    //Member -
+    type Member struct {
+        Name   string
+        Age    int
+        Active bool
+    }
+
+    func main() {
+        b := []byte(`{"Name":"Alex","Age":10,"Active":true}`)
+        var m Member
+        err := json.Unmarshal(b, &m)
+        if err != nil {
+            panic(err)
+        }
+        fmt.Println(m)
+    }
+    ```
+
+xml 디코딩
+xml
+
+sql 패키지
+
+Go에 sql 데이터베이스를 사용하기 위해선 표준 패키지 database/sql 을 사용한다
+
+관계형 데이터베이스들에게 공통적으로 사용되는 인터페이스들을 제공하고 있다.
+
+sql.db타입
+
+sql.db인데 일반적으로 sql.Open() 함수를 통해 생성된다.
+
+Connection함수에서 어떤 DB 드라이버를 사용할 것인지 그리고
+해당 DB연결 정보를 제공하면, 결과로 sql.DB객체를 얻게 된다.
+
+query(), QueryRow(), Exec() 함수를 통해 DB에 접근할 수 있다.
+
+db, err := sql.Open("mysql", "user:password@/dbname")
+defer db.Close()
+rows, err := db.Query("SELECT id, name FROM test")
+
+db.Exec("INSERT INTO test(id, name) VALUES (1, 'Alex')")
+
+mysql 드라이버가 설치된 후 , 아래와 같이 database/sql과 mysql 드라이버를
+import 해야되는데, Mysql 드라이버 패키지는 _로 alias를 주어 개발자가 드라이버
+패키지를 직접 사용하지 않게 한다.
+
+이경우 드라이버 패키지는 database/sql 패키지가 내부적으로 사용하게 되며, 개발자는
+database/sql을 통해서 모든 sql 프로세싱을 진행하게 된다.
+
+sql.Open()으로 이는 sql.DB객체를 리턴한다.
+sql.Open()의 첫번째 파라미터는 드라이버명으로 여기서는 mysql로 적으며, 두번째 파라미터는 각 드라이버의
+Connection String으로서 Mysql Connections을 적으면 된다.
+
+sql.Open()은 실제 DB Connection을 Open 하지 않는다
+
+즉 sql.DB는 드라이버종류와 Connection 정보를 가지고는 있지만, 실제 DB를 연결하지 않으며,
+많은 경우 Connection 정보조차 체크하지도 않는다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
