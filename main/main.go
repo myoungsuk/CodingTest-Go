@@ -2,33 +2,38 @@ package main
 
 import (
 	"fmt"
+	"strconv"
 )
 
 func main() {
-	arr := []int{0, 1, 2, 4, 3}
-	queries := [][]int{{0, 4, 2}, {0, 3, 2}, {0, 2, 2}}
+	l := 5
+	r := 555
 
-	fmt.Print(solution(arr, queries))
+	fmt.Print(solution(l, r))
 }
 
-func solution(arr []int, queries [][]int) []int {
-	var result = []int{}
-
-	for _, query := range queries {
-		k := query[2]
-		min := 1000001
-
-		for _, n := range arr[query[0] : query[1]+1] {
-			if n > k && n < min {
-				min = n
-			}
-		}
-
-		if min == 1000001 {
-			result = append(result, -1)
-		} else {
-			result = append(result, min)
+func check(num int) bool {
+	str := strconv.Itoa(num)
+	for _, r := range str {
+		if r != '5' && r != '0' {
+			return false
 		}
 	}
+	return true
+}
+
+func solution(l int, r int) []int {
+	var result []int
+
+	for i := l / 5 * 5; i <= r; i++ {
+		if check(i) {
+			result = append(result, i)
+		}
+	}
+
+	if len(result) == 0 {
+		result = append(result, -1)
+	}
+
 	return result
 }
