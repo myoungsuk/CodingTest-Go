@@ -1,39 +1,23 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
-	"strconv"
+	_ "github.com/go-sql-driver/mysql"
+	"log"
 )
 
 func main() {
-	l := 5
-	r := 555
-
-	fmt.Print(solution(l, r))
-}
-
-func check(num int) bool {
-	str := strconv.Itoa(num)
-	for _, r := range str {
-		if r != '5' && r != '0' {
-			return false
-		}
+	db, err := sql.Open("mysql", "root:myoung1249!@tcp(127.0.0.1:3306)/board")
+	defer db.Close()
+	if err != nil {
+		panic(err)
 	}
-	return true
-}
-
-func solution(l int, r int) []int {
-	var result []int
-
-	for i := l / 5 * 5; i <= r; i++ {
-		if check(i) {
-			result = append(result, i)
-		}
+	var title string
+	err = db.QueryRow("SELECT title, created_by, DATE_FORMAT(created_at, '%Y-%m-%d %H:%i:%s') as created_at FROM article WHERE id > 0").Scan(&title)
+	if err != nil {
+		log.Fatal(err)
 	}
-
-	if len(result) == 0 {
-		result = append(result, -1)
-	}
-
-	return result
+	fmt.Println(title)
+	print("success")
 }
